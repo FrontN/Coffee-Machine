@@ -72,6 +72,7 @@ def get_valid_int(prompt):
         The valid integer entered by the user.
     """
     while True:
+        clear_screen()
         try:
             user_input = int(input(prompt))
             return user_input
@@ -107,7 +108,6 @@ def coin_machine():
         "Dollars": 1
     }
     for option in options:
-        clear_screen()
         options[option] = get_valid_int(f"How many {option} do you want to insert? ") * change[option]
     
     return float(f"{sum(options.values()):.2f}")
@@ -131,6 +131,7 @@ def inserted_enough_coins(choice, inserted):
         The remainder of the amount of money after buying the drink, or the total amount of money inserted if not enough to buy the drink.
     """
     inserted_val = coin_machine() + inserted
+    clear_screen()
     print(f"You've inserted: {inserted_val}$")
     time.sleep(1.5)
     cost = MENU[choice]['cost']
@@ -156,6 +157,11 @@ def coffee_maker(choice):
     for i in MENU[choice]['ingredients']:
         RESOURCES[i] -= MENU[choice]['ingredients'][i]
     RESOURCES["money"] += MENU[choice]['cost']
+    print("Making your drink", end="")
+    for _ in range(3):
+        print(".",flush=True, end="")
+        time.sleep(1)
+    clear_screen()
     return f"Here's your {choice} ☕!"
 
 def display_drinks():
@@ -186,6 +192,7 @@ def get_valid_input(prompt, options):
         The user's input, which is guaranteed to be in options.
     """
     while True:
+        clear_screen()
         user_answer = input(prompt).lower()
         if user_answer in options:
             return user_answer
@@ -219,7 +226,6 @@ def main():
     options_list = ["off", "report", *display_drinks()]
 
     while machine_on:
-        clear_screen()
         choice = get_valid_input(f"What would you like? {display_drinks()}: ", options_list)
 
         if choice == "off":
