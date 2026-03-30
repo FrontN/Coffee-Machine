@@ -1,0 +1,65 @@
+ALGORITMO: Coffee Machine
+------------------------------
+
+VARIABILI E TIPI:
+  - choice: str
+  - menu: dict
+  - machine_on: bool
+  - resources: dict
+  - option_list: array
+  - inserted_coins: int
+  - add_or refund: str
+  - change: int
+  - inserted: int
+
+COSTANTI:
+  - funzione resources_checker: prende un parametro, resources, stampa ogni elemento key, value  all'interno del parametro
+  - funzione has_enough_resources: prende un parametro, choice. usa choice per trovare il prodotto nel menu e controlla se possediamo a sufficienza le risorse richieste nel menu. Se si ritorna 'True' altrimenti 'False'
+  - funzione coin_machine: non prende parametri, richiede all'utente il tipo di monete che vuole inserire(penny, nickel, dime, quarter), converte e ritorna il loro valore in dollaro
+  - funzione inserted_enough_coins: prende un parametro, choice, controlla se il risultato di coin_machine meno il prezzo del drink scelto è superiore o uguale a zero. ritorna 'True', change se si altrimenti 'False', change
+  - funzione coffee_maker: prende un parametro, choice e deduce da resources gli ingredienti richiesti per il drink scelto e ritorna 'Here's your',choice
+
+INIZIO:
+  machine_on <--- True
+  change <--- 0
+  inserted <--- 0
+  finche machine_on
+  	scrivi("What would you like? (espresso/latte/cappucino): ")
+  	leggi(choice)
+  	Se choice uguale 'off'
+      machine_on uguale False
+      scrivi('Goodbye')
+    fine Se
+  	Se choice uguale 'report'
+      usa resources_checker
+      aspetta un qualche secondo poi ricomincia il ciclo
+    fine Se
+    Se choice non fa parte di option_list
+      scrivi('no available product please choose another drink)
+      ricomincia il ciclo
+    altrimenti
+      Se la funzione has_enough_resources è uguale a True
+        cilco
+          inserted uguale usa la funzione coin_machine
+          payment_accepted e change uguale funzione inserted_enough_coin
+          Se payment_accepted è uguale a True
+            usa la funzione coffee_maker
+            Se change uguale True
+              scrivi('Here's x$ as a change')
+            scrivi('Here's your ', choice)
+            esci dal ciclo
+          altrimenti
+            scrivi("Sorry that's not enough money.(add/refund)")
+            leggi(add_or_refund)
+            Se add_or_refund uguale 'add'
+              ricomincia il ciclo
+            altrimenti
+              scrivi('money refunded)
+              azzera inserted
+              
+      altrimenti
+        scrivi('not enough resources. Please choose another drink')
+    fine Se
+    
+
+FINE
