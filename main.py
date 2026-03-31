@@ -1,4 +1,5 @@
 from resources import RESOURCES
+from prettytable import PrettyTable
 from coffee_machine_art import logo
 from menu import MENU
 import time
@@ -17,19 +18,28 @@ def clear_screen():
 
 def resources_checker(resources):
     """
-    Print the current amount of resources and wait for 5 seconds.
+    Print a table of all resources and their quantities.
+
+    This function is used to display all resources and their quantities in a
+    table. It uses the PrettyTable library to create the table and
+    prints it to the console. It then waits for 5 seconds before
+    continuing.
 
     Parameters
     ----------
     resources : dict
-        A dictionary containing the resources and their amounts.
+        A dictionary containing all resources and their quantities.
 
     Returns
     -------
     None
     """
+    table = PrettyTable()
+    table.field_names= ["Resource", "Quantity"]
     for key, value in resources.items():
-        print(f'{key}: {value}')
+        display_value = f"{value:.2f}$" if key == "money" else value
+        table.add_row([key.capitalize(), display_value])
+    print(table)
     time.sleep(5)
 
 def has_enough_resources(choice):
