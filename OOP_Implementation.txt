@@ -1,0 +1,22 @@
+-----------------------------------------------------# What is it? #-----------------------------------------------------
+A coffee machine
+
+----------------------------------------------# What can it do? (Methods) #----------------------------------------------
+
+display the list of resources
+present the menu
+get the customer's order
+check if the order is present in the menu
+check the availability of resources
+accept payments
+give change
+release stock
+make and serve the coffee
+
+----------------------------------# What does it have/contain? (Attributes/Classes) #----------------------------------
+
+a store/manager of resources(display the list of resources, check the availability of resources)
+a menu with all recipes
+an order handler (takes the order)
+coffee maker (makes and serve coffee)
+a payment handler (checks the price of the item requested and handles payments with eventual change)
