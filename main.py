@@ -63,7 +63,7 @@ def main():
 
     machine_on = True
     change = 0
-    options_list = ["off", "report", "admin", *menu.display_drinks()]
+    options_list = ["off", "admin", *menu.display_drinks()]
 
     while machine_on:
         choice = get_valid_input(f"What would you like? {menu.display_drinks()}: ", options_list)
@@ -72,9 +72,6 @@ def main():
             clear_screen()
             machine_on = False
             print("Goodbye!!")
-        elif choice == "report":
-            clear_screen()
-            resources.report()
         elif choice == "admin":
             clear_screen()
             resources.manage_resources()
